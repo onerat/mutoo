@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>html_lecture_</title>
+        <!--<link rel="stylesheet" href="css/style.css" />-->
+        <style>
+            .container {
+                margin-top:150px;
+            }
+            
+            .contain {
+                width:250px;
+                margin:0 auto;
+            }
+            input {
+                margin:5px;
+            }
+        </style>
+    </head>
+    
+<body>
+    
+<div class="container">
+<div class="contain">
+    
+    <p><%=link_to 'index', works_path%></p>
+    
+    <form action='/works' method='POST'>
+        <input name="user_id" type='hidden' value=<%=current_user.id%>></input>
+        <input name='authenticity_token' type='hidden' value=<%=@token%>></input>
+        Title: <input name='wtitle' type='text' required></input><br>
+        <!--select태그로 값이 제대로 저장되지 않아서 _form파일을 따로 생성하지 않고 html파일 자체에 form을 만듦-->
+        Instrument: <select name='winstrument'>
+            <option value="보컬">보컬</option>
+            <option value="기타">기타</option>
+            <option value="키보드">키보드</option
+            <option value="드럼">드럼</option>
+            <option value="베이스">베이스</option>
+            <option value="etc">etc</option>
+        </select><br>
+        Region: <input name='wregion' type='text' required></input><br>
+        Music: <input name='wmusic' type='text' required></input><br>
+        Info: <input name='winfo' type='text'></input><br>
+        <input type='submit'></input>
+    </form>
+  
+</div>  
+</div>
+</body>
+
+</html>

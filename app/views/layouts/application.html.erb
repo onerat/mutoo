@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Music Together</title>
+  <link rel="shortcut icon" href="/main_logo.ico">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+  
+  <style>
+    a:hover {
+      color:#222;
+      text-decoration:none!important;
+    }
+  </style>
+  
+  <script type="text/javascripts" src="custom.js"></script>
+
+</head>
+
+<body>
+  
+  <div class="wrap">
+    
+    <div class="logContain">
+      <ul class="logmenu">
+        <% if user_signed_in? %>
+          <li class="bar"></li>
+          <li><a href="/home/mypage">마이페이지</a></li>
+          <li class="bar"></li>
+          <li><%= link_to '로그아웃', destroy_user_session_path %></li>
+          <li class="bar"></li>
+          <li class="user_welcome"><%= current_user.nickname %>님 환영합니다.</li>
+        <% else %>
+          <li class="bar"></li>
+          <li><%=link_to '회원가입', new_user_registration_path%></li>
+          <li class="bar"></li>
+          <li><%=link_to '로그인', new_user_session_path%></li>
+          <li class="bar"></li>
+        <% end %>
+      </ul>
+    </div>
+    
+    <!-- 라우팅 추가는 <a>태그에 대체해 주세요 -->
+    
+    <div class="menuContain" id="menuContainer">
+        <div class="menuwrap">
+        <div class="menu">
+            <a href='/home/index'><img class="topImg" src="/main_logo.png" /></a>
+            <ul>
+              <% if user_signed_in? %>
+                <li><p><a class="menu1"><%=link_to '연주자찾기', works_path%></a></p></li>
+                <li><p><a href="/search_profile" class="menu1">프로필</a></p></li>
+                <li><p><a href="/find_room" class="menu1">합주실찾기</a></p></li>
+                <li><p><a class="menu1"><%=link_to '커뮤니티', frees_path %></a></p></li>
+              <% else %>
+                <li><p><a class="menu1"><%=link_to '연주자찾기', user_session_path, method: :POST, data: { confirm: "로그인해주세요." } %></a></p></li>
+                <li><p><a class="menu1"><%=link_to '프로필', user_session_path, method: :POST, data: { confirm: "로그인해주세요." } %></a></p></li>
+                <li><p><a class="menu1"><%=link_to '연습실찾기', find_room_path %></a></p></li>
+                <li><p><a class="menu1"><%=link_to '커뮤니티', frees_path %></a></p></li>
+              <% end %>
+            </ul>
+        </div>
+        </div>
+    </div>
+    
+  </div>
+    <!--<div class="container">-->
+      <%= yield %>  
+    </div>
+    
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+</body>
+</html>

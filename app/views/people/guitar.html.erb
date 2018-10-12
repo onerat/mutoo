@@ -1,0 +1,145 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!--<link rel="stylesheet" href="css/style.css" />-->
+        <style>
+            .container {
+                margin-top:150px;
+                margin-bottom:40px;
+            }
+            
+            .portfolio-item {
+                width:100%;
+            }
+            
+            .navbar {
+                width:100%;
+            }
+            
+            .form-inline {
+                width:400px;
+                margin:0 auto;
+            }
+            
+            .formContain a {
+                margin:0 20px;
+            }
+            .row {
+                display: inline-block;
+                width: 400px;
+                margin: 1% 2%;
+                border-radius: 10px;
+                border: 1px solid #BDBDBD;
+                
+            }
+            .place {
+                margin-top:50px;
+                margin-bottom:50px;
+            }
+            .board-container {
+                margin:0 auto;
+                display:grid;
+                width:900px;
+                grid-template-columns:10px auto;
+                grid-template-rows:50px 30px;
+            }
+            .line {
+                /*border:thin solid black;*/
+            }
+            .line1 {
+                grid-row:span 2;
+                background-color:#666;
+            }
+            .line3, .line4 {
+                padding-left:20px;
+            }
+            .line3 {
+                font-size:42px;
+                line-height:50px;
+            }
+            .line4 {
+                font-size:18px;
+                line-height:30px;
+            }
+        </style>
+    </head>
+<body>
+
+<div class="container">
+    <div class="place">
+    <div class="board-container">
+        <div class="line line1"></div>
+        <div class="line line3">프로필</div>
+        <div class="line line4">Find Profiles</div>
+    </div>
+    </div>
+<center>
+ 
+ <nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
+    <div class="formContain"><a href="/people/vocal">보컬</a>
+    <a href="/people/guitar"><strong>기타</strong></a>
+    <a href="/people/keyboard">키보드</a>
+    <a href="/people/drum">드럼</a>
+    <a href="/people/base">베이스</a>
+   
+    </div>
+  </form>
+</nav>
+<br>
+
+
+<%@users.each do |x| %>
+ <%if x.instrument == '기타'%>
+ <div class="row">
+        <div class="portfolio-item">
+          <div class="card h-100">
+           <%@extras.each do |e| %>
+            <%if e.user_id == x.id %>
+            <%@a=0%>
+            <%if e.avatar.exists?%>
+                <%= image_tag e.avatar.url(:medium) %></a>  <!--이미지-->
+            <%else%>
+                <img style="width:390px;height:500px;" src="/default.png">
+            <%end%>
+            <%end%>
+            <%end%>
+            
+          
+            <%if @a==1%>
+            <img style="width:390px;height:500px;" src="/default.png">
+            <%end%>
+            
+              <%@a=1%>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">악기 : <%=x.instrument%></a> <!--악기-->
+              </h4>
+              <p class="card-text">닉네임 : <%=x.nickname%></p> <!--닉네임-->
+              <p class="card-text">사는 곳 : <%=x.region%></p> <!--닉네임-->
+              
+              <%@extras.each do |e| %>
+              <%if e.user_id == x.id %>
+              <p class="card-text">소개글 : <%=e.introduce%></p>
+              <%end%>
+              <%end%>
+              
+              <a href='/people/email_form'><button>이메일 보내기</button> </a>
+            </div>
+          </div>
+        </div>
+  
+  </div>
+
+  <%end%>
+  <%end%>
+  
+  
+  
+  
+  
+</center>
+</div>
+
+</body>
+</html>

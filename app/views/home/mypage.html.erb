@@ -1,0 +1,105 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!--<link rel="stylesheet" href="css/style.css" />-->
+        <style>
+            .container {
+                margin-top:150px;
+                margin-bottom:40px;
+            }
+            .portfolio-item {
+                width:100%;
+            }
+            
+            .navbar {
+                width:100%;
+            }
+            
+            .form-inline {
+                width:400px;
+                margin:0 auto;
+            }
+            
+            .formContain a {
+                margin:0 20px;
+            }
+            
+            .row {
+                display: inline-block;
+                width: 400px;
+                margin: 1% 2%;
+                border-radius: 10px;
+                border: 1px solid #BDBDBD;
+                
+            }
+            .portfolio-item {
+                margin-bottom: 30px;
+                
+            }
+        </style>
+    </head>
+<body>
+<div class="container">
+
+<center><h3>My Page</h3><br>
+
+<center>
+ 
+
+ <%@users.each do |x| %>
+ <%if x.id == current_user.id%>
+ 
+ <div class="row">
+        <div class="portfolio-item">
+          <div class="card h-100">
+            <%@extras.each do |e| %>
+            <%if e.user_id == x.id %>
+            <%@a=0%>
+            <%if e.avatar.exists?%>
+                <%= image_tag e.avatar.url(:medium) %></a>  <!--이미지-->
+            <%else%>
+                <img style="width:390px;height:500px;" src="/default.png">
+            <%end%>
+            <%end%>
+            <%end%>
+            
+            <%if @a==1%>
+            <img style="width:390px;height:500px;" src="/default.png">
+            <%end%>
+            <% @a=1 %>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">악기 : <%=x.instrument%></a> <!--악기-->
+              </h4>
+              <p class="card-text">닉네임 : <%=x.nickname%></p> <!--닉네임-->
+              <p class="card-text">사는 곳 : <%=x.region%></p> <!--닉네임-->
+              
+              <%@extras.each do |e| %>
+              <%if e.user_id == x.id %>
+              <p class="card-text">소개글 : <%=e.introduce%></p>
+              <%end%>
+              <%end%>
+              
+        
+            </div>
+          </div>
+        </div>
+  
+  </div>
+  <%end%>
+  <%end%>
+  
+  <% if user_signed_in? %>
+        <%unless current_user.extras.any? %>
+        <p><%=link_to '프로필 등록하기', enrollprofiles_index_path%></p><br><br>
+        <%else%>
+        <p><%=link_to '프로필 수정하기', enrollprofiles_show_path%></p><br><br>
+        <%end%>
+        <%end%>
+</center>
+
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!--<link rel="stylesheet" href="css/style.css" />-->
+        <style>
+            .container {
+                margin-top:150px;
+                margin-bottom:40px;
+            }
+            
+            .navbar {
+                width:100%;
+            }
+            
+            .form-inline {
+                width:520px;
+                margin:0 auto;
+            }
+            
+            .formContain a {
+                margin:0 20px;
+            }
+            
+            .row {
+                display: inline-block;
+                width: 400px;
+                margin: 1% 2%;
+                border-radius: 10px;
+                border: 1px solid #BDBDBD;
+                
+            }
+            
+        </style>
+    </head>
+<body>
+
+<div class="container">
+  <div class="place">
+    <div class="board-container">
+        <div class="line line1"></div>
+        <div class="line line3">합주실 찾기</div>
+        <div class="line line4">Find Studios</div>
+    </div>
+  </div>
+<center>
+
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
+    <div class="formContain"><a href="/room/seoul">서울</a>
+    <strong><a href="/room/gyeonggi">경기</a></strong>
+    <a href="/room/chungcheong">충청</a>
+    <a href="/room/jeolla">전라</a>
+    <a href="/room/gyeongsang">경상</a>
+    <a href="/room/gangwon">강원</a>
+    <a href="/room/jeju">제주</a>
+    </div>
+  </form>
+</nav>
+<br>
+
+ <%@rooms.each do |x| %>
+ <%if x.room_area.include? '경기'%>
+ <div class="row">
+        <div class="portfolio-item">
+          <div class="card h-100">
+            <a href="<%=x.room_view%>"><img class="card-img-top" src="<%=x.room_img%>" alt=""></a>  <!--이미지-->
+            <div class="card-body">
+              <h4 class="card-title">
+                 <a href="<%=x.room_view%>" target="_blank"><%=x.room_name%></a> <!--지역-->
+              </h4>
+              <p class="card-text"><%=x.room_area%></p> <!--연습실 이름-->
+            </div>
+          </div>
+        </div>
+  </div>
+  <%end%>
+    <%end%>
+</center>
+</div>
+
+</body>
+</html>

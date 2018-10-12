@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    
+    <section>
+        
+        <div class="imgcontainer">
+            <div class="box box1">
+                <div class="back back1"><img src="/menu1_back.png" /></div>
+                <% if user_signed_in? %>
+                <div class="front front1"><a href = "/works"><img src="/menu1_front.png" /></a></div>
+                <% else %>
+                <div class="front front1"><a href = "/users/sign_in" data-confirm = "로그인해주세요"><img src="/menu1_front.png" /></a></div>
+                <% end %>
+            </div>
+            <div class="box box2">
+                <div class="back back2"><img src="/menu2_back.png" /></div>
+                <div class="front front2"><a href = "/find_room"><img src="/menu2_front.png" /></a></div>
+            </div>
+            <div class="box box3">
+                <div class="back back3"><img src="/menu3_back.png" /></div>
+                <div class="front front3"><a href = "/frees"><img src="/menu3_front.png" /></a></div>
+            </div>
+            <div class="box box4">
+                <div class="back back4"><img src="/menu4_back.png" /></div>
+                <% if user_signed_in? %>
+                <div class="front front4"><a href = "/home/index"><img src="/menu4_front.png" /></a></div>
+                <% else %>
+                <div class="front front4"><a href = "/users/sign_up"><img src="/menu4_front.png" /></a></div>
+                <% end %>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="introduce"><img src="/main_page.png" /></div>
+        </footer>
+        
+        <div class='copyright'>
+            <p>Copyright &copy; 2018 Seoul Women's University<br><%=link_to '김태영 | 백승민 | 윤현조 | 정세영 | 최은희 | 한주희',home_intro_path%></p>
+        </div>
+            
+    </section>
+</body>
+</html>

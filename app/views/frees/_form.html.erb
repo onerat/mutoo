@@ -1,0 +1,39 @@
+<%= form_for(@free, :html => { :multipart => true }) do |f| %>
+  <% if @free.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@free.errors.count, "error") %> prohibited this free from being saved:</h2>
+
+      <ul>
+      <% @free.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+  <% if current_user.has_role? :admin %>
+    <font color="red">공지사항</font><br/>
+    <%= f.check_box :notice, id: :free_notice %>
+  <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+      <%= f.file_field :avatar %>
+  </div>
+  <div>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :nick, value: current_user.nickname%>
+    <!--userid 보내기-->
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

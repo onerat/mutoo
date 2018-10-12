@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fcontent: MyString
+  user_id: 
+  free_id: 
+
+two:
+  fcontent: MyString
+  user_id: 
+  free_id: 

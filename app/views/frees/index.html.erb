@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>html_lecture_</title>
+        <!--<link rel="stylesheet" href="css/style.css" />-->
+        <style>
+            .container {
+                margin-top:150px;
+                margin-bottom:40px;
+            }
+            
+            .content {
+              width:900px;
+              margin:0 auto;
+            }
+            
+            .table {
+              margin:5px;
+            }
+        </style>
+    </head>
+<body>
+
+<div class="container">
+  <div class="place">
+    <div class="board-container">
+        <div class="line line1"></div>
+        <div class="line line3">커뮤니티</div>
+        <div class="line line4">Community</div>
+    </div>
+  </div>
+<div class="content">
+  <p id="notice"><%= notice %></p>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th>조회수</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @notis.each do |free| %>
+        <% if free.notice == true %>
+          <tr>
+          <td><strong>공지</strong></td>
+          <td><a href ='/frees/<%=free.id%>'><%= free.title %></a></td>
+          <td><%= free.nick%></td>
+          <td><%= free.updated_at.strftime('%F') %></td>
+          <td><%= "#{free.unique_impression_count}" %>
+          </tr>
+        <% end %>
+      <% end %>    
+      
+      <% @frees.each do |free| %>
+        <tr>
+          <td><%=free.id%></td>
+          <%#if user_signed_in? %>
+          <td><a href ='/frees/<%=free.id%>'><%= free.title %></a></td>
+          <%#else%>
+          <!--<td><a href ='/users/sign_in' data-confirm = "로그인해주세요"><%#= free.title %></a></td>-->
+          <%#end%>
+          <td><%= free.nick%></td>
+          <td><%= free.updated_at.strftime('%F') %></td>
+          <td><%= "#{free.unique_impression_count}" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= will_paginate @frees, :previous_label => '이전', :next_label => '다음' %>
+  <%if user_signed_in?%>
+    <%= link_to '글쓰기', new_free_path %>
+  <%end%>
+  <%= form_tag frees_search_path, :method => :get do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "검색", :name => nil %>
+  <% end %>
+  
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>html_lecture_</title>
+        <!--<link rel="stylesheet" href="css/style.css" />-->
+        <style>
+            .container {
+                margin-top:140px;
+                margin-bottom:50px;
+            }
+            
+            .content {
+              width:480px;
+              margin:0 auto;
+              border:2px solid gainsboro;
+            }
+            
+            .contentdiv {
+              width:440px;
+              margin:20px;
+            }
+            
+            h2 {
+              margin-bottom:40px;
+            }
+        </style>
+    </head>
+<body>
+
+<div class="container">
+<h2>Sign up</h2>
+
+<div class="content">
+<div class="contentdiv">
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name,
+                required: true,
+                autofocus: true ,
+                input_html: { autocomplete: "name" }%>
+    <%= f.input :nickname,
+                required: true,
+                autofocus: true ,
+                input_html: { autocomplete: "nickname" }%>
+    <%= f.input :email,
+                required: true,
+                autofocus: true ,
+                input_html: { autocomplete: "email" }%>
+    <%= f.input :password,
+                required: true,
+                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation,
+                required: true,
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :region,
+                required: true,
+                autofocus: true ,
+                input_html: { autocomplete: "region" }%>
+    <%= f.label :Instrument %>
+    <!--<select name = "Instrument">-->
+    <!--  <option value="보컬" selected="selected">보컬</option>-->
+    <!--  <option value="기타">기타</option>-->
+    <!--  <option value="키보드">키보드</option>-->
+    <!--  <option value="드럼">드럼</option>-->
+    <!--  <option value="베이스">베이스</option>-->
+    <!--  <option value="etc">etc</option>-->
+    <!--</select>-->
+    <label class="radio_button">보컬
+      <%= f.radio_button :instrument, '보컬', checked: true %>
+    </label>
+    <label class="radio_button">기타
+      <%= f.radio_button :instrument, '기타', checked: true %>
+    </label>
+    <label class="radio_button">키보드
+      <%= f.radio_button :instrument, '키보드', checked: true %>
+    </label>
+    <label class="radio_button">드럼
+      <%= f.radio_button :instrument, '드럼', checked: true %>
+    </label>
+    <label class="radio_button">베이스
+      <%= f.radio_button :instrument, '베이스', checked: true %>
+    </label>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

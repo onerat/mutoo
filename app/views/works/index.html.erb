@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>html_lecture_</title>
+        <!--<link rel="stylesheet" href="css/style.css" />-->
+        <style>
+            .container {
+                margin-top:150px;
+                margin-bottom:40px;
+            }
+            
+            .content {
+                width:900px;
+                margin:0 auto;
+            }
+            .board-container {
+                width:900px;
+            }
+        </style>
+    </head>
+    
+<body>
+<div class="container">
+  <div class="place">
+    <div class="board-container">
+        <div class="line line1"></div>
+        <div class="line line3">연주자 찾기</div>
+        <div class="line line4">Find Musicians</div>
+    </div>
+  </div>
+<div class="content">
+    <table class="table">
+        <thead>
+            <th>Instrument</th>
+            <th>Title</th>
+            <th>Writer</th>
+            <th>Likes</th>
+            <th>Date</th>
+            <th colspan="2"></th>
+        </thead>
+        
+        <tbody>
+            <%@works.each do |work| %>
+            <tr>
+                <!--instrument값은 따로 if문 안 써도 전달된 거 확인-->
+                <td><strong><%=work.winstrument%></strong></td>
+                <!--<td><a href="/works/#{work.id}"><%=work.wtitle%></a></td>-->
+                <td><a href='/works/<%=work.id%>'><%=work.wtitle%></a></td>
+                <td><%=work.user.nickname%></td>
+                <td><%=work.wlikes.size%></td>
+                <td><%=work.created_at.strftime('%F')%></td>
+                <!--scaffold강의 참고해서 그대로 링크 넣음-->
+                <%#if work.user == current_user%>
+                <% if (current_user.has_role? :admin)||(work.user == current_user)%>
+                <td><%=link_to 'Edit', edit_work_path(work)%></td>
+                <td><%=link_to 'Destroy', work_path(work), method: :delete, data: {confirm: '삭제하시겠습니까?'}%></td>
+                <%end%>
+            </tr>
+            <%end%>
+        </tbody>
+    </table>
+    <br>
+    <!--새 글 쓰는 링크-->
+    <%=will_paginate @works%>
+    
+    <%if user_signed_in?%>
+        <a href = '/works/new'>글쓰기</a>
+    <%end%>
+    
+    <%= form_tag works_search_path, :method => :get do %>
+    <%= text_field_tag :query, params[:query] %> <%= submit_tag "Search!" %>
+    <% end %>
+
+</div>
+</div>
+</body>
+
+</html>

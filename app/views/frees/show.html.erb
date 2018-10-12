@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!--<link rel="stylesheet" href="css/style.css" />-->
+        <style>
+            .container {
+                margin-top:190px;
+            }
+        </style>
+    </head>
+<body>
+
+<div class="container">
+<p id="notice"><%= notice %></p>
+
+<div class="table">
+  <strong>Title:</strong>
+  <%= @free.title %>
+</div>
+
+<div class="table">
+  <strong>Content:</strong>
+  <%= @free.content %><br>
+  <% if @free.avatar.exists? %>
+    <%= image_tag @free.avatar.url %>
+  <% end%>
+</div>
+<div>
+<%if user_signed_in?%>
+  <%=form_for(Fcomment.new, url: free_fcomments_path(@free.id)) do |c| %>
+    <%=c.label :fcontent, '댓글'%>
+    <%=c.text_field :fcontent%>
+    <%=c.hidden_field :user_id, value: current_user.id %>
+    <%=c.hidden_field :nick, value: current_user.nickname %>
+    <%=c.submit '작성'%>
+<%end%>
+<%else%>
+  <%=link_to '댓글을 다시려면 로그인해주세요!', new_user_session_path%>
+<%end%>
+</div>
+
+<br><br>
+<div class="table">
+<%@free.fcomments.each do |comment|%>
+  <strong><%=comment.nick%></strong>
+  <%=comment.updated_at.strftime('%F  %H:%M')%><br>
+  <%=comment.fcontent%> 
+  <%if user_signed_in?%>
+    <%if (current_user.has_role? :admin)||(comment.user == current_user) %>
+      <%=link_to '[삭제]', free_fcomment_path(@free.id, comment.id), method: 'delete'%>
+    <%end%>
+  <%end%>
+</div>
+<br>
+<%end%>
+<%if user_signed_in?%>
+  <%if (current_user.has_role? :admin)||(@free.user == current_user) %>
+    <%= link_to '수정', edit_free_path(@free) %> |
+    <%= link_to '삭제', free_path, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%end%>
+<%end%>
+<%# else %>
+  <%# link_to '로그인해주세요!', new_user_session_path%>
+<%# end %>
+<%= link_to '목록', frees_path %>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!--<link rel="stylesheet" href="css/style.css" />-->
+        <style>
+            .container {
+                margin-top:150px;
+                margin-bottom:40px;
+            }
+            
+            .content {
+                width:350px;
+                margin:40px auto;
+            }
+        </style>
+    </head>
+<body>
+
+<div class="container">
+    <div class="content">
+    <p>
+        <strong>Title:</strong>
+        <%=@work.wtitle%>
+    </p>
+    <p>
+        <strong>Instrument:</strong>
+        <%=@work.winstrument%>
+    </p>
+    <p>
+        <strong>region:</strong>
+        <%=@work.wregion%>
+    </p>
+    <p>
+        <strong>music:</strong>
+        <%=@work.wmusic%>
+    </p>
+    <p>
+        <strong>info:</strong>
+        <%=@work.winfo%>
+    </p>
+    
+    <%=link_to '목록', works_path%>
+    <%#if (@work.user == current_user)||(current_user.has_role? :admin)%>
+    <% if can? :update, @work %>
+    <%#=link_to '수정', edit_work_path(@work)%>
+    <%=link_to '수정', edit_work_path(@work)%>
+    <%end%>
+    <br>
+        <strong>Like: </strong>
+        <%= @work.wlikes.size%>명이 좋아합니다.
+    <%if user_signed_in?%>
+    <br>
+        <%if current_user.is_wlike? (@work)%>
+        <form action='/work/<%=@work.id%>/wlike' method='post'>
+            <button>좋아요 취소</button>
+        </form>
+        <%else%>
+        <form action='/work/<%=@work.id%>/wlike' method='post'>
+            <button>좋아요</button>
+        </form>
+        <%end%>
+    <%end%>
+    
+    <%if user_signed_in?%>
+    <form action='/wcomments' method='POST'>
+        <!--댓글도 자꾸 이상한게 떠서 폼헬퍼 안씀-->
+        <input type='hidden' name='user_id' value=<%=current_user.id%>></input>
+        <input type='hidden' name='authenticity_token' value=<%=@token%>></input>
+        <input type='hidden' name='work_id' value=<%=@work.id%>></input>
+        <strong>Comment: </strong>
+        <input type='text' name='wccontent'></input>
+        <input type='submit'></input>
+    </form>
+    <%end%>
+    
+    <%@work.wcomments.each do |wcomment|%>
+    <br>
+        <strong><%=wcomment.user.nickname%></strong>
+        <%=wcomment.wccontent%>
+        <%if (wcomment.user == current_user)||(current_user.has_role? :admin)%>
+        <a href='/wcomments/<%=wcomment.id%>' data-confirm='댓글을 삭제합니다' data-method='DELETE'>|x|</a>
+        <%end%>
+        <br>
+    <%end%>
+    
+    <%if !user_signed_in?%>
+    <br>
+    <strong>Comment: </strong>
+    <input type='text' value='로그인 후 작성 가능합니다' size='30'></input>
+    <%end%>
+    
+    </div>
+    </div>
+
+</body>
+</html>

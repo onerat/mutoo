@@ -1,0 +1,207 @@
+// @import "bootstrap-sprockets";
+// @import "bootstrap";
+
+* {margin:0; padding:0; list-style:none; text-decoration:none; color:#666; font-family: 'Nanum Gothic', sans-serif; }
+
+.wrap {
+    width:100%;
+    height:140px;
+    position:fixed;
+    top:0;
+    z-index:1;
+}
+
+.logContain {
+    position:absolute;
+    width:100%;
+    height:40px;
+    background-color:gainsboro;
+    z-index:100;
+}
+
+.logmenu {
+    position:relative;
+    width:auto;
+}
+
+.logmenu li {
+    float:right;
+    font-size:12px;
+    margin:0 20px;
+    line-height:40px;
+}
+
+.user_welcome {
+    background-color:#ccc;
+    padding:0 15px;
+    margin-right:-20px!important;
+}
+
+.bar {
+    height:40px;
+    border-right:1px solid white;
+}
+
+.menuContain { 
+    width:100%;
+    margin-top:40px;
+    background-color:#ededed;
+    position:fixed;
+    top:0;
+    height:110px;
+    transition: top 0.3s ease-in-out;
+    z-index:50;
+}
+
+.nav-up {
+    top:-150px;
+}
+
+.menuwrap {
+    width:1280px;
+    margin:0 auto;
+}
+
+.topImg {
+    width:230px;
+    float:left;
+    margin-left:32px;
+}
+
+.menu {
+    position:relative;
+    width:100%;
+    height:100px;
+    margin-top:-16px;
+}
+
+.menu1 {
+    line-height:110px;
+}
+
+.menu ul li { 
+    line-height:40px;
+    float:left;
+    margin-left:170px;
+}
+
+.menu a {
+    color:black;
+    font-size:18px;
+    
+}
+
+.menu p {
+    width:auto;
+    height:110px;
+    padding:0 10px;
+    margin:0 -10px;
+    box-sizing:border-box;
+    transition:all 0.4s;
+}
+
+p:hover {
+    background-color:rgba(220, 220, 220, 0.5);
+}
+
+
+/*---------------------------global area--------------------------*/
+
+section {
+    padding-top:104px;
+}
+
+section p {
+    display:block;
+    font-size:13px;
+    margin:30px;
+}
+
+.box img { width:320px;}
+
+.imgcontainer { 
+    margin:0 auto;
+    width:1280px;
+    margin-top:-10px;
+}
+
+.box {
+    float:left;
+    width:25%;
+    margin:0 0px;
+    position:relative;
+}
+
+.front {
+    transition:opacity 0.4s ease;
+}
+
+.back1 {
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+.front1 {
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+.back2 {
+    position:absolute;
+    top:0;
+    left:320px;
+}
+
+.front2 {
+    position:absolute;
+    top:0;
+    left:320px;
+}
+
+.back3 {
+    position:absolute;
+    top:0;
+    left:640px;
+}
+
+.front3 {
+    position:absolute;
+    top:0;
+    left:640px;
+}
+
+.back4 {
+    position:absolute;
+    top:0;
+    left:960px;
+}
+
+.front4 {
+    position:absolute;
+    top:0;
+    left:960px;
+}
+
+.front:hover {
+    opacity:0;
+    transition:all 0.6s;
+}
+
+footer {
+    margin-top:400px;
+}
+
+.introduce {
+    width:1280px;
+    margin:0 auto;
+}
+
+.introduce img {
+    width:1280px;
+}
+
+hr {
+    margin-top:30px;
+}

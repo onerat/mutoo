@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .imgcontainer {
+            width:1200px;
+            margin:0 auto;
+        }
+        .box img {
+            width:300px;
+        }
+        .first {
+            position:absolute;
+            top:0;
+            left:0px;
+        }
+        .back1 {
+            position:absolute;
+            top:0;
+            left:300px;
+        }
+        .front1 {
+            position:absolute;
+            top:0;
+            left:300px;
+        }
+        .back2 {
+            position:absolute;
+            top:0;
+            left:600px;
+        }
+        .front2 {
+            position:absolute;
+            top:0;
+            left:600px;
+        }
+        .back3 {
+            position:absolute;
+            top:0;
+            left:900px;
+        }
+        .front3 {
+            position:absolute;
+            top:0;
+            left:900px;
+        }
+        .back4 {
+            position:absolute;
+            top:299.17px;
+            left:0;
+        }
+        .front4 {
+            position:absolute;
+            top:299.17px;
+            left:0;
+        }
+        .back5 {
+            position:absolute;
+            top:299.17px;
+            left:300px;
+        }
+        .front5 {
+            position:absolute;
+            top:299.17px;
+            left:300px;
+        }
+        .back6 {
+            position:absolute;
+            top:299.17px;
+            left:600px;
+        }
+        .front6 {
+            position:absolute;
+            top:299.17px;
+            left:600px;
+        }
+        .last {
+            position:absolute;
+            top:299.17px;
+            left:900px;
+        }
+        .front:hover {
+            opacity:0;
+            transition:opacity 0.4s ease;
+        }
+        .container1 {
+            margin-top:50px;
+            margin-bottom:40px;
+        }
+        .copyright2 {
+            margin-top:700px;
+            text-align:center;
+            margin-bottom:80px;
+        }
+        /*게시판 제목*/
+        .place {
+            margin-top:40px;
+        }
+        .board-container {
+            margin:0 auto;
+            display:grid;
+            width:1200px;
+            grid-template-columns:10px auto;
+            grid-template-rows:50px 30px;
+        }
+        .line {
+            /*border:thin solid black;*/
+        }
+        .line1 {
+            grid-row:span 2;
+            background-color:#666;
+        }
+        .line3, .line4 {
+            padding-left:20px;
+        }
+        .line3 {
+            font-size:42px;
+            line-height:50px;
+        }
+        .line4 {
+            font-size:18px;
+            line-height:30px;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <div class="place">
+    <div class="board-container">
+        <div class="line line1"></div>
+        <div class="line line3">개발자 소개</div>
+        <div class="line line4">Introduction of Developers</div>
+    </div>
+    </div>
+    
+    <div class="container1">
+        <div class="imgcontainer">
+            <div class="box">
+                <div class="first"><img src="/0-03.png"></div>
+            </div>
+            <div class="box box1">
+                <div class="back back1"><img src="/2-03.png" /></div>
+                <div class="front front1"><img src="/1-03.png" /></div>
+            </div>
+            <div class="box box2">
+                <div class="back back2"><img src="/4-03.png" /></div>
+                <div class="front front2"><img src="/3-03.png" /></div>
+            </div>
+            <div class="box box3">
+                <div class="back back3"><img src="/6-03.png" /></div>
+                <div class="front front3"><img src="/5-03.png" /></div>
+            </div>
+        </div>
+        
+        <div class="imgcontainer">
+            <div class="box box1">
+                <div class="back back4"><img src="/8-03.png" /></div>
+                <div class="front front4"><img src="/7-03.png" /></div>
+            </div>
+            <div class="box box2">
+                <div class="back back5"><img src="/10-03.png" /></div>
+                <div class="front front5"><img src="/9-03.png" /></div>
+            </div>
+            <div class="box box3">
+                <div class="back back6"><img src="/12-03.png" /></div>
+                <div class="front front6"><img src="/11-03.png" /></div>
+            </div>
+            <div class="box">
+                <div class="last"><img src="/13-03.png"/></div>
+            </div>
+        </div>
+    </div>
+        
+        
+    <div class="copyright2">
+        <p>Copyright &copy; 2018 Seoul Women's University<br>멋쟁이사자처럼 LIKELION HACKATHON</p>
+    </div>
+</section>
+
+</body>
+</html>

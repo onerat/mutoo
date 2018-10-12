@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!--<link rel="stylesheet" href="css/style.css" />-->
+        <style>
+            .container {
+                margin-top:150px;
+                margin-bottom:40px;
+            }
+        </style>
+    </head>
+<body>
+
+<div class="container">
+<p><%=link_to 'index', works_path%></p>
+<form action='/works/<%=@work.id%>' method='POST'>
+    <input type='hidden' name="_method" value="patch">
+    <input name='authenticity_token' type='hidden' value=<%=@token%></input>
+    Title: <input name='wtitle' type='text' value=<%=@work.wtitle%> required></input><br>
+    Instrument: <select name='winstrument'>
+        <option value="보컬">보컬</option>
+        <option value="기타">기타</option>
+        <option value="키보드">키보드</option
+        <option value="드럼">드럼</option>
+        <option value="베이스">베이스</option>
+        <option value="etc">etc</option>
+    </select><br>
+    Region: <input name='wregion' type='text' value=<%=@work.wregion%> required></input><br>
+    Music: <input name='wmusic' type='text' value=<%=@work.wmusic%> required></input><br>
+    Info: <input name='winfo' type='text' value=<%=@work.winfo%> required></input><br>
+    <input type='submit'></input>
+</form>
+</div>
+
+</body>
+</html>

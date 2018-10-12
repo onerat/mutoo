@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!--<link rel="stylesheet" href="css/style.css" />-->
+        <style>
+            .container {
+                margin-top:150px;
+                margin-bottom:40px;
+            }
+            
+            .contain {
+                width:380px;
+                padding:10px;
+                margin:0 auto;
+            }
+            
+            input {
+                margin:5px;
+            }
+        </style>
+    </head>
+<body>
+
+<div class="container">
+<div class="contain">
+<h4>프로필 등록하기</h4>
+* 회원가입 시 등록한 정보가 기본적으로 보여집니다.
+<br><br>
+
+<%@users.each do |x| %>
+<%if x.id == current_user.id%>
+
+<form action='/enrollprofiles/create' method='post' enctype = 'multipart/form-data'>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type='hidden' name='user_id' value=<%=x.id%>><br>
+    닉네임 : <input type="text" name="nickname" value="<%=x.nickname%>">  <br>
+    이메일 : <input type="text" name="email" value="<%=x.email%>"><br>
+    악기 : <input type="text" name="instrument" value="<%=x.instrument%>"><br>
+    사는 곳: <input type="text" name="region" value="<%=x.region%>"><br>
+    한줄 소개: <textarea cols="40" rows="5" name="introduce"></textarea><br>
+    프로필 사진 <input type="file" class="form-control" name="avatar">
+    <input type="submit" value="등록하기">
+    
+</form> 
+    
+
+ <script>
+      $(document).ready(function(){
+       console.log($("input[name=category]:checked").val());
+      });
+
+      var uploadFile = $('.fileBox .uploadBtn');
+      uploadFile.on('change', function(){
+      	if(window.FileReader){
+      		var filename = $(this)[0].files[0].name;
+      	} else {
+      		var filename = $(this).val().split('/').pop().split('\\').pop();
+      	}
+      	$(this).siblings('.fileName').val(filename);
+      });
+      
+      var uploadFile = $('.fileBox .uploadBtn');
+      uploadFile.on('change', function(){
+      	if(window.FileReader){
+      		var filename = $(this)[0].files[0].name;
+      	} else {
+      		var filename = $(this).val().split('/').pop().split('\\').pop();
+      	}
+      	$(this).siblings('.fileName').val(filename);
+      });
+     
+  </script>
+
+  
+
+  
+<%end%>
+<%end%>
+
+</div>
+</div>
+
+</body>
+</html>

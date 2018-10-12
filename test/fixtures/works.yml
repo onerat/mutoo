@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  wtitle: MyString
+  winstrument: MyString
+  wregion: MyString
+  wmusic: MyString
+  winfo: MyString
+  user_id: 
+
+two:
+  wtitle: MyString
+  winstrument: MyString
+  wregion: MyString
+  wmusic: MyString
+  winfo: MyString
+  user_id: 

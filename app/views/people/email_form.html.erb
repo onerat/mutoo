@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <!--<link rel="stylesheet" href="css/style.css" />-->
+        <style>
+            .container {
+                margin-top:150px;
+                margin-bottom:40px;
+            }
+            
+            .contain {
+                width:430px;
+                padding:10px;
+                margin:0 auto;
+            }
+            
+            input {
+                margin:5px;
+            }
+      </style>
+    </head>
+<body>
+<div class="container">
+<div class="contain">
+<h1>Email Form</h1>
+
+
+ 
+<form action="/email/send" method="post">
+    Email: <input type="text" name="email" value=<%=@user.email%>><br>
+    Title: <input type="text" name="title"><br>
+    Content: <textarea cols="40" rows="5" name="content"></textarea><br><br>
+    
+    <button><%=link_to '전송', people_email_send_path%></button>
+   
+
+</form>
+
+
+</div>
+</div>
+
+</body>
+</html>
+
